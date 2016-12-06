@@ -291,7 +291,8 @@ if (!('webkitSpeechRecognition' in window)) {
     }
     final_transcript = capitalize(final_transcript);
     if(final_transcript.indexOf('start') != -1){
-      
+      var msg = new SpeechSynthesisUtterance('Opening youtube for you sir');
+      window.speechSynthesis.speak(msg);
       final_transcript = '';
       console.log('reached');
       window.open("http://www.youtube.com");
