@@ -1,0 +1,27 @@
+{
+  "name": "productivity_assistant",
+  "version": "1.0.0",
+  "description": "Helps developers to automate day to day simple tasks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upa8/Productivity-Assistant.git"
+  },
+  "keywords": [
+    "Automation",
+    "Productivity",
+    "Developer",
+    "Speech",
+    "to",
+    "text"
+  ],
+  "author": "Pratik Upacharya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/upa8/Productivity-Assistant/issues"
+  },
+  "homepage": "https://github.com/upa8/Productivity-Assistant#readme"
+}
