@@ -1,6 +1,13 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
+var bodyParser = require('body-parser');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 
 app.get('/', function(req, response) {
@@ -12,6 +19,11 @@ app.get('/', function(req, response) {
         response.write(html);  
         response.end();  
     })
+})
+
+app.post('/parse', function(req, res) {
+    console.log(req.body);
+    require('./server')(req, res);
 })
 
 

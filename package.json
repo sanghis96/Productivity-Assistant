@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/upa8/Productivity-Assistant#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "shelljs": "^0.7.5",
+    "underscore": "^1.8.3"
   }
 }
