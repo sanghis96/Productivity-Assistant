@@ -23,6 +23,9 @@ module.exports = function(req, res) {
     if(_.contains(words, "open")) {
         console.log('Identified open keyword');
         require('./open.js')(req, res);
+    } else if(_.contains(words, "search")) {
+        console.log('Identified search keyword');
+        require('./search.js')(req, res);
     } else {
         return res.json({'msg': 'I did not understand your command'});
     }
