@@ -13,13 +13,16 @@ showInfo('info_start');
 
 var create_email = false;
 var final_transcript = '';
-var recognizing = false;
+var recognizing = true;
 var ignore_onend;
 var start_timestamp;
 
+
+
 if (!('webkitSpeechRecognition' in window)) {
-  upgrade();
-} else {
+  upgrade();  
+} 
+
   start_button.style.display = 'inline-block';
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
@@ -56,7 +59,8 @@ if (!('webkitSpeechRecognition' in window)) {
 
   recognition.onend = function() {
     console.log('triggering recognition onend event');
-    recognizing = false;
+    startButton({})
+    /*recognizing = false;
     if (ignore_onend) {
       return;
     }
@@ -71,12 +75,13 @@ if (!('webkitSpeechRecognition' in window)) {
       var range = document.createRange();
       range.selectNode(document.getElementById('final_span'));
       window.getSelection().addRange(range);
-    }
+    }*/
   };
 
   recognition.onresult = function(event) {
     console.log('triggering recognition onresult event');
     var interim_transcript = '';
+    console.log(event);
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
@@ -101,7 +106,10 @@ if (!('webkitSpeechRecognition' in window)) {
     final_span.innerHTML = linebreak(final_transcript);
     interim_span.innerHTML = linebreak(interim_transcript);
   }.bind(this);
-}
+
+  console.log('now starting the recognition service....');
+  startButton({});
+
 
 function upgrade() {
   start_button.style.visibility = 'hidden';
@@ -120,16 +128,17 @@ function capitalize(s) {
 }
 
 function startButton(event) {
-  if (recognizing) {
+  console.log('inside startButton', recognizing);
+  /*if (recognizing) {
     recognition.stop();
     return;
-  }
+  }*/
   final_transcript = '';
 
   // Hard coded the language setting to remove select_dialect and select_language dropdwons.
   recognition.lang = 'en-US';
   
-  
+  console.log('starting to recognise');
   recognition.start();
   ignore_onend = false;
   final_span.innerHTML = '';

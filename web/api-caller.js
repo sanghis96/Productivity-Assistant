@@ -18,12 +18,14 @@ var server;
       dataType: options.dataType || 'json'
     })
     .fail(function(err) {
-        alert('An error occured' + JSON.stringify(err));
+        //alert('An error occured' + JSON.stringify(err));
+        console.log(JSON.stringify(err));
     })
   }
 
   // Function to send data to server for parsing. Any  preprocessing logic can be written here.
   server.parse = function(text, callback) {
+    console.log('sending data to server for parsing...');
     server._httpPost({
         'data': { 'script': text },
         'success': callback
