@@ -26,7 +26,10 @@ module.exports = function(req, res) {
     } else if(_.contains(words, "search")) {
         console.log('Identified search keyword');
         require('./search.js')(req, res);
-    } else {
+    }  else if(_.contains(words, "hi") || _.contains(words, "hello")) {
+        console.log('Identified hi keyword');
+        return res.json({'msg': 'Hi! what can I do for you ?'});
+    }else {
         return res.json({'msg': 'I did not understand your command'});
     }
 }
