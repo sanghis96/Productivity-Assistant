@@ -6,7 +6,8 @@ var open = require("open");
 var path = require('path');
 var glob = require('glob');
 var fs = require('fs');
-var google = require('google')
+var google = require('google');
+
 
 module.exports = function(req, res) {
     var words = req.body.script.split(" "), keywords, where;
@@ -53,6 +54,7 @@ module.exports = function(req, res) {
         exec('start "" "'+files[0]+'"');
         return res.json({'msg': 'youtube search with keywords "' + keywords + '" is open now'});
     }*/ else {
+        
         return res.json({'msg': 'I did not understand your command'});
     }
 

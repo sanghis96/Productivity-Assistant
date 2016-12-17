@@ -26,9 +26,11 @@
   "homepage": "https://github.com/upa8/Productivity-Assistant#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
     "express": "^4.14.0",
     "glob": "^7.1.1",
     "google": "^2.1.0",
+    "google-distance": "^1.0.1",
     "open": "0.0.5",
     "request": "^2.79.0",
     "shelljs": "^0.7.5",
