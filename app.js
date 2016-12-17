@@ -26,9 +26,7 @@ app.post('/parse', function(req, res) {
     require('./server')(req, res);
 })
 
-
 app.use(express.static('web'));
-
 app.listen(8000, function() {
     console.log('Server ready and listening on port : 8000');
 })

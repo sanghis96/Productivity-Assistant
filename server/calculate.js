@@ -5,8 +5,13 @@ var path = require('path');
 var validOperations = {
     "into":4,
     "divided":3,
+    "divide":3,
     "+":2,
-    "minus":1
+    "plus":2,
+    "add":2,
+    "minus":1,
+    "-":1,
+    "subtract":1,
 }
 
 module.exports = function(req, res) {
@@ -16,12 +21,14 @@ module.exports = function(req, res) {
     var giveOperation = words[words.length -2];
     var secondInput = parseInt(words[words.length -1]);
 
-
     console.log("Calculating  "+ firstInput +' and '+ secondInput + 'operation '+ giveOperation);
     
     var results = calculation(validOperations[giveOperation],firstInput,secondInput);
+    
+    console.log(results);
+    return res.json({'msg': ' '+results});
     if(!_.isNull(results)){
-        return res.json({'msg': results});
+        return res.json({'msg': ' '+results});
     }else{
         return res.json({'msg': 'I did not understand your command'});
     }
@@ -40,5 +47,4 @@ function calculation(operation, inputOne,inputTwo){
     if(operation == 4){
         return inputOne * inputTwo;
     }
-
 }

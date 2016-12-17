@@ -47,6 +47,8 @@ module.exports = function(req, res) {
         require('./calculate.js')(req, res);
     }else if(_.contains(words,"distance")){
         require('./distance.js')(req, res);
+    }else  if(_.contains(words,"play")){
+        require('./songs.js')(req, res);
     }else{
         console.log("Json words,"+JSON.stringify(words));
         words = null;

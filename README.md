@@ -22,4 +22,7 @@ Productivity Assistant to automate simple tasks
 4) Open browser
 5) Tell me a joke
 6) Distance between pune and mumbai
+7) Calculate 4784 into 709
+8) Search for Linux command to remove Directory on stackoverflow
+
 
