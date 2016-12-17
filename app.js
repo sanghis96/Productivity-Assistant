@@ -34,15 +34,3 @@ app.listen(8000, function() {
 })
 
 
-
-
-
-
-
-
-
-/*       
-    http.createServer(function(request, response) {  
-
-    }).listen(8000);
-});*/

@@ -13,3 +13,13 @@ Productivity Assistant to automate simple tasks
 4. search for {keywords} on google
 5. search for {keywords} on youtube
 6. setup my work environment
+
+
+//Commands that you can use
+1) Introduce yourself
+2) Open Youtube
+3) Open google
+4) Open browser
+5) Tell me a joke
+6)
+
