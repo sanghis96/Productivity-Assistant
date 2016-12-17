@@ -6,6 +6,8 @@ var open = require("open");
 var path = require('path');
 var glob = require('glob');
 var fs = require('fs');
+var google = require('google');
+
 
 module.exports = function(req, res) {
     var words = req.body.script.split(" "), keywords, where;
@@ -33,13 +35,26 @@ module.exports = function(req, res) {
     } else  if(where === 'youtube') {
         open('http://www.youtube.com/results?search_query=' + keywords.split(" ").join("+"));
         return res.json({'msg': 'youtube search with keywords "' + keywords + '" is open now'});
-    }  /*else  if(where === 'my machine') {
+    }else if(where == "stackoverflow"){
+        google.resultsPerPage = 5
+        var nextCounter = 0 
+        google(keywords +' stackoverflow', function (err, resp, next){
+          if (err){
+            return res.json({'msg': 'Sorry could not find results for this query'});
+          } 
+          var link = resp.links[0];
+          console.log("Print links ", link.href);
+          open(link.href);
+          return res.json({'msg': 'We have found this results'});
+        });
+    } /*else  if(where === 'my machine') {
         where = where.replace('file','');
         var files = glob.sync(where, {'cwd': 'D:\\'})
         console.log('files are', files);
         exec('start "" "'+files[0]+'"');
         return res.json({'msg': 'youtube search with keywords "' + keywords + '" is open now'});
     }*/ else {
+        
         return res.json({'msg': 'I did not understand your command'});
     }
 

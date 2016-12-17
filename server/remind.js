@@ -17,8 +17,9 @@ module.exports = function(req, res) {
 
     console.log('inside remind.js', sentence);
 
-    var index = sentence.lastIndexOf("in 5 minutes");
-
+    var index = sentence.lastIndexOf("in");
+    var getTime = parseInt(words[words.length - 2])*1000;
+    console.log("Time "+ getTime);
     if(index !== -1) {
         keywords = sentence.substring(0, index -1);
         keywords = keywords.replace('remind me to','');
@@ -29,10 +30,10 @@ module.exports = function(req, res) {
             console.log('executing play command');
             exec('start "" "server\\rooster.mp3"');
             exec('start "" "server\\note.txt"');
-        }, 10000)
+        }, getTime)
+        return res.json({'msg':'Alarm is set'});
+    }else{
+        return res.json({'msg':'Sorry I did not understand you'});
     }
-
-    return res.json({'msg':'Alarm is set'});
-
     
 }

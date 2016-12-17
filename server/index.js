@@ -7,21 +7,24 @@ Return response
 
 var _ = require('underscore');
 var exec = require('child_process').exec;
-
+var request = require('request');
 
 module.exports = function(req, res) {
 
     console.log('inside open.js', req.body.script);
 
     var words = req.body.script.split(" ");
+    console.log('before',words);
     words = words.map(function(w) {
-        return w.toLowerCase();
+            return w.toLowerCase();
     })
+    words = _.without(words, 'lara');
+    console.log('after',words);
+    
 
     // Anything related to open command will be handled here. E.g. 'open youtube, open folder etc.'
-    /*if(_.contains(words,"")){
-        return res.json({'msg': ''});
-    }else*/ if(_.contains(words, "open")) {
+    if(_.contains(words, "open")) {
+        console.log("Robot started listening");
         console.log('Identified open keyword');
         require('./open.js')(req, res);
     } else if(_.contains(words, "search")) {
@@ -32,14 +35,28 @@ module.exports = function(req, res) {
         return res.json({'msg': 'Hi! what can I do for you ?'});
     } else if (_.contains(words,"introduce")) {
         console.log('Identified who are you?');
-        return res.json({'msg': 'Hello, I am productivity assistant. I can automate your day to day common tasks'});
-    } else if(_.contains(words,"joke")){
-        console.log('Telling joke');
-        return res.json({'msg': '"How many programmers does it take to change a light bulb? None. It is a hardware problem.'});
+        return res.json({'msg': 'Hello, I am a productivity assistant. You can call me Lara. I am here to automate you simple daily tasks'});
     } else if(_.contains(words,"remind")){
         console.log('idnentified reminder keyword');
        require('./remind.js')(req,res);        
-    } else{
-        return res.json({'msg': 'Sorry, I did not understand your command, can you please repeat'});
+    } else if(_.contains(words,"joke")){
+        console.log('Telling joke');
+        //http://api.icndb.com/jokes/random
+        request('http://api.icndb.com/jokes/random', function (error, response, body) {
+            var data = JSON.parse(body);
+            console.log("response", data.value.joke);
+            return res.json({'msg': ' '+ data.value.joke});
+        });
+    }else if(_.contains(words,"calculate")){
+        // calculate.js
+        require('./calculate.js')(req, res);
+    }else if(_.contains(words,"distance")){
+        require('./distance.js')(req, res);
+    }else  if(_.contains(words,"play")){
+        require('./songs.js')(req, res);
+    }else {
+        console.log("Json words,"+JSON.stringify(words));
+        words = null;
+        return res.json({'msg': 'Sorry'});
     }
 }
