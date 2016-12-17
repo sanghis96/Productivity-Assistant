@@ -25,6 +25,6 @@ Productivity Assistant to automate simple tasks
 7) Calculate 4784 into 709
 8) Search for Linux command to remove Directory on stackoverflow
 9) Remind me to send an email in 30 seconds
-10)
+10) Open environment
 
 

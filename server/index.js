@@ -42,11 +42,7 @@ module.exports = function(req, res) {
     } else if(_.contains(words,"joke")){
         console.log('Telling joke');
         //http://api.icndb.com/jokes/random
-        request('http://api.icndb.com/jokes/random', function (error, response, body) {
-            var data = JSON.parse(body);
-            console.log("response", data.value.joke);
-            return res.json({'msg': ' '+ data.value.joke});
-        });
+        require('./jokes.js')(req,res);
     }else if(_.contains(words,"calculate")){
         // calculate.js
         require('./calculate.js')(req, res);
@@ -57,6 +53,6 @@ module.exports = function(req, res) {
     }else {
         console.log("Json words,"+JSON.stringify(words));
         words = null;
-        return res.json({'msg': 'Sorry'});
+        return res.json({'msg': ''});
     }
 }
